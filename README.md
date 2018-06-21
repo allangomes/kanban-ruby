@@ -8,6 +8,6 @@ https://github.com/allangomessl/kanban-react
 
 
 ### How to use
-config your postgres database in `config/database.yml`
-run `bin/rake db:setup`
-run `bin/rails s`
+- config your postgres database in `config/database.yml`
+- run `bin/rake db:setup`
+- run `bin/rails s`
