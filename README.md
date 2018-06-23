@@ -1,24 +1,13 @@
-# README
+# Kanban Ruby
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Frontend
+https://github.com/allangomessl/kanban-react
 
-Things you may want to cover:
+### Similar Backends
+- https://github.com/allangomessl/kanban-elixir
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### How to use
+- config your postgres database in `config/database.yml`
+- run `bin/rake db:setup`
+- run `bin/rails s`
