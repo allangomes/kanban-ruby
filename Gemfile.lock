@@ -58,6 +58,7 @@ GEM
       activesupport
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    diff-lcs (1.3)
     erubi (1.7.1)
     ffi (1.9.25)
     globalid (0.4.1)
@@ -128,6 +129,23 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rspec-core (3.7.1)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-rails (3.7.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.1)
     ruby_dep (1.5.0)
     spring (2.0.2)
       activesupport (>= 4.2)
@@ -164,6 +182,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 5.2.0)
   responders
+  rspec-rails (~> 3.7)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
