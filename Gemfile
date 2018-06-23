@@ -19,6 +19,10 @@ gem 'puma', '~> 3.11'
 # Use olive_branch for convert snake_case rest to camel case. 
 gem "olive_branch"
 
+gem 'active_model_serializers'
+gem 'responders'
+gem 'acts_as_list'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Lists Controller
 class ListsController < ApplicationController
   before_action :set_board
@@ -7,24 +5,24 @@ class ListsController < ApplicationController
 
   # GET /lists
   def index
-    json_resources(@board.lists)
+    render json: Resources.new(@board.lists)
   end
 
   # POST /lists
   def create
-    @list = List.create!(board_params)
-    json_resource(@list, :created)
+    @list = List.create!(list_params)
+    render json: @list, status: :created
   end
 
   # GET /lists/:id
   def show
-    json_resource(@list)
+    render json: @list
   end
 
   # PUT /lists/:id
   def update
-    @list.update!(board_params)
-    json_resource(@list)
+    @list.update!(list_params)
+    render json: @list
   end
 
   # DELETE /lists/:id
@@ -37,7 +35,7 @@ class ListsController < ApplicationController
 
   def list_params
     # whitelist params
-    params.permit(:title, :description, :color)
+    params.permit(:title, :description, :color, :board_id)
   end
 
   def set_board

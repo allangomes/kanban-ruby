@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Boards Controller
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[show update destroy]
@@ -7,24 +5,24 @@ class BoardsController < ApplicationController
   # GET /boards
   def index
     @boards = Board.all
-    json_resources(@boards)
+    render json: Resources.new(@boards)
   end
 
   # POST /boards
   def create
     @board = Board.create!(board_params)
-    json_resource(@board, :created)
+    render json: @board
   end
 
   # GET /boards/:id
   def show
-    json_resource(@board)
+    render json: @board
   end
 
   # PUT /boards/:id
   def update
     @board.update!(board_params)
-    json_resource(@board)
+    render json: @board
   end
 
   # DELETE /boards/:id
@@ -36,7 +34,6 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    # whitelist params
     params.permit(:title, :description, :color)
   end
 

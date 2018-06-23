@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Exception Handle
 module ExceptionHandler
   # provides the more graceful `included` method
@@ -7,11 +5,11 @@ module ExceptionHandler
 
   included do
     rescue_from ActiveRecord::RecordNotFound do |e|
-      json_response({ message: e.message }, :not_found)
+      render json: { error: e }, status: :not_found
     end
 
     rescue_from ActiveRecord::RecordInvalid do |e|
-      json_response({ message: e.message }, :unprocessable_entity)
+      render json: { error: e }, status: :unprocessable_entity
     end
   end
 end
