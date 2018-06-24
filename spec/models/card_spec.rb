@@ -1,43 +1,74 @@
 require 'rails_helper'
 
-RSpec.describe Card, type: :model do
+describe Card, type: :model do
+
+  context 'validations' do
+    it { should validate_presence_of :title }
+  end
+
+  context 'associations' do
+    it { should belong_to :board }
+    it { should belong_to :list }
+  end
+
   context 'with position' do
 
-    board = Board.create!(
-      title: 'board'
-    )
+    before(:all) do
+      @angra = create :angra
+      @pink_floyd = create :pink_floyd
+      @interestellar = create :interestellar
+    end
 
-    list = List.create!(
-      title: 'list',
-      board_id: board.id
-    )
+    after(:each) do
+      @angra.reload
+      @pink_floyd.reload
+      @interestellar.reload
+    end
 
+    it 'check list id' do
+      expect(@angra.list.id).to eq(1)
+      expect(@pink_floyd.list.id).to eq(1)
+      expect(@interestellar.list.id).to eq(2)
+    end
 
-    it 'position is setted' do
-      card1 = Card.create!(
-        title: 'card',
-        board_id: board.id,
-        list_id: list.id
-      ).reload
+    it 'check position' do
+      expect(@angra.position).to eq(1)
+      expect(@pink_floyd.position).to eq(2)
+      expect(@interestellar.position).to eq(1)
+    end
 
-      expect(card1.position).to eq(1)
-      expect(card1.title).to eq('card')
+    it 'update position' do
+      @pink_floyd.update!(position: 1)
+    end
 
-      card2 = Card.create!(
-        title: 'card 2',
-        board_id: board.id,
-        list_id: list.id
-      ).reload
+    it 'positions after position changed' do
+      expect(@pink_floyd.position).to eq(1)
+      expect(@angra.position).to eq(2)
+      expect(@interestellar.position).to eq(1)
+    end
 
-      expect(card2.position).to eq(2)
-      expect(card2.title).to eq('card 2')
+    it 'change list to last' do
+      @pink_floyd.update!(list_id: 2)
+    end
 
-      card2.update!(position: 1)
-      card2.reload
-      expect(card2.position).to eq(1)
+    it 'positions after list change' do
+      expect(@angra.list.id).not_to eq(@pink_floyd.list.id)
+      expect(@interestellar.list.id).to eq(@pink_floyd.list.id)
+      
+      expect(@angra.position).to eq(1)
+      expect(@interestellar.position).to eq(1)
+      expect(@pink_floyd.position).to eq(2)
+    end
 
-      card1 = card1.reload
-      expect(card1.position).to eq(2)
+    it 'change list to position' do
+      @pink_floyd.update!(list_id: 2)
+      @angra.update!(list_id: 2, position: 2)
+    end
+
+    it 'positions after list change to postion' do
+      expect(@interestellar.position).to eq(1)
+      expect(@angra.position).to eq(2)
+      expect(@pink_floyd.position).to eq(3)
     end
   end
 end

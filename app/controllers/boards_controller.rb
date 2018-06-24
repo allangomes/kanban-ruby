@@ -1,4 +1,4 @@
-# Boards Controller
+# BoardsController
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[show update destroy]
 
