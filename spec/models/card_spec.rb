@@ -2,6 +2,12 @@ require 'rails_helper'
 
 describe Card, type: :model do
 
+  before(:all) do
+    @angra = create :angra
+    @pink_floyd = create :pink_floyd
+    @interestellar = create :interestellar
+  end
+
   context 'validations' do
     it { should validate_presence_of :title }
   end
@@ -11,13 +17,7 @@ describe Card, type: :model do
     it { should belong_to :list }
   end
 
-  context 'with position' do
-
-    before(:all) do
-      @angra = create :angra
-      @pink_floyd = create :pink_floyd
-      @interestellar = create :interestellar
-    end
+  feature 'position cheking' do
 
     after(:each) do
       @angra.reload
@@ -48,7 +48,7 @@ describe Card, type: :model do
     end
 
     it 'change list to last' do
-      @pink_floyd.update!(list_id: 2)
+      @pink_floyd.update!(list_id: 2, position: nil)
     end
 
     it 'positions after list change' do
@@ -61,7 +61,6 @@ describe Card, type: :model do
     end
 
     it 'change list to position' do
-      @pink_floyd.update!(list_id: 2)
       @angra.update!(list_id: 2, position: 2)
     end
 
