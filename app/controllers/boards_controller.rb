@@ -10,8 +10,12 @@ class BoardsController < ApplicationController
 
   # POST /boards
   def create
-    @board = Board.create!(board_params)
-    render json: @board
+    @board = Board.create(board_params)
+    if @board.valid?
+      render json: @board, status: :created
+    else
+      render json: @board.errors
+    end
   end
 
   # GET /boards/:id

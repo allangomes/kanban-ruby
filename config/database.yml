@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: kanban_production
-  username: kanban
+  url: <%= ENV['DATABASE_URL'] %>
+  # database: kanban_production
+  # username: kanban
   password: <%= ENV['KANBAN_DATABASE_PASSWORD'] %>

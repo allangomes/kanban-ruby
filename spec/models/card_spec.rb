@@ -17,7 +17,7 @@ describe Card, type: :model do
     it { should belong_to :list }
   end
 
-  feature 'position cheking' do
+  context 'position cheking' do
 
     after(:each) do
       @angra.reload

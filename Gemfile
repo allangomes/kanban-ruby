@@ -17,11 +17,10 @@ gem 'puma', '~> 3.11'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use olive_branch for convert snake_case rest to camel case. 
-gem "olive_branch"
-
+gem 'olive_branch'
 gem 'active_model_serializers'
-gem 'responders'
 gem 'acts_as_list'
+gem 'devise_token_auth'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -52,7 +51,8 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
-  gem 'capybara'
+  gem 'rspec-json_expectations'
+  gem 'json_matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
