@@ -1,7 +1,4 @@
-# Kanban Ruby (Archived)
-
-### This Sample Project was archived in favor of **React Hooks**, **new Context API** and best pratices added recently
-
+# Kanban Ruby
 
 ### Frontend
 https://github.com/allangomessl/kanban-react
